@@ -1,0 +1,76 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Crowdfunding.Model.Project>
+
+
+<body>
+
+    
+
+    <br />
+
+    
+
+    <br />
+    <br />
+
+    <a class="btn btn-primary" asp-controller="Project" asp-action="Index">View all Projects</a>
+
+    <br />
+    <br />
+    <br />
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+               <th>image</th>
+               @*<th>video</th>-->*@
+                <th>Funding</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+
+            <h3>Funded Projects</h3>
+        <tbody>
+            @foreach (var project in Model ?? Enumerable.Empty<Crowdfunding.Model.Project>())
+            {
+                <tr>
+                    <td> <a href="/backer/projectedit/@project.Id" title="View"><b> @project.Title</b></a></td>
+                    <td> @project.Description </td>
+                    <td>
+
+
+
+                        @if (project.Description != null)
+                        {
+                            <img src="/images/@project.Description" title="Project image" width="100" height="100" />
+                        }
+
+
+
+                    </td>
+                     <td>@project.Fundings </td>
+                    <td> @project.Category </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+ 
+
+ <div class="container">
+
+ </div>
+
+  <div class="container">
+
+ </div>
+
+</body>

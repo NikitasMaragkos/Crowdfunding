@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Sign up";
+}
+@model Crowdfunding.Model.User
+
+<h3>@ViewData["Title"]</h3>
+
+<hr />
+<br />
+<br />
+@Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-area="" asp-controller="Backer" asp-action="BackerCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label">Username</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">E-mail</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Verify registration as Backer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-area="" asp-controller="Creator" asp-action="CreatorCreate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label">Username</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label">First Name</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label">Last Name</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">E-mail</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Verify registration as Creator" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div>
+    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Go Back to Home Page</a> <!-- redirect -> homepage -->
+</div>
+
+<div class="container">
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

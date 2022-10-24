@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Edit Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Crowdfunding.Model
+@model ProjectFunding
+<hr />
+<body>
+
+    <table class="table table-dark table-bordered mb-0">
+        <thead>
+            <tr>
+                <th scope="col">TITLE</th>
+                <th scope="col">DESCRIPTION</th>
+                <th scope="col">GOAL</th>
+                <th scope="col">FUNDINGS</th>
+                <th scope="col">PROGRESS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">@Model.Project.Title</th>
+                <th> @Model.Project.Description</th>
+                <th>@Model.Project.Goal </th>
+                <th>@Model.Project.Fundings</th>
+                <th>@(Math.Round((decimal)Model.Project.Fundings / Model.Project.Goal * 100))%</th>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tier</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var Package in Model.FundingPackages)
+            {
+                <tr>
+                    <td> @Package.Tier</td>
+                    <td> @Package.Name </td>
+                    <td> @Package.Description </td>
+                    <td> @Package.Price </td>
+                         @*<td> <a href="/project/delete/@project.Id" title="delete"><b>X</b></a> </td>
+                        <td> <a href="/project/update/@project.Id" title="update"><b>V</b></a> </td>/*@
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p hidden>@(Startup.ProjectId = Model.Project.Id)</p>
+    <a href="/project/createfundingpackage" title="Add Funding Package"><b>Add Funding Package</b></a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Status Updates</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> @Model.Project.StatusUpdate</td>
+
+            </tr>
+        </tbody>
+
+    </table>
+    <form asp-area="" asp-controller="Project" asp-action="StatusUpdate">
+        <div class="form-group">
+            <input type="hidden" asp-for="Project.Id" />
+            <label asp-for="Project.StatusUpdate" class="control-label">Post a new status update!</label>
+            <input asp-for="Project.StatusUpdate" class="form-control" />
+            <span asp-validation-for="Project.StatusUpdate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Post a new Status Update" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <div>
+        <a class="btn btn-primary" asp-area="" asp-controller="Creator" asp-action="Index">Go Back</a> <!-- redirect - creatorpage -->
+    </div>
+
+    <br />
+
+    <div>
+        <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Go Back to Home Page</a> <!-- redirect - homepage -->
+    </div>
+
+
+    <div class="container">
+
+    </div>
+
+
+    <div class="container">
+
+    </div>
+
+
+    <div class="container">
+
+    </div>
+
+</body>
